@@ -25,7 +25,8 @@ class UI:
     def show_rules(self):
         print(self._rules)
 
-    def get_user_input(self):
+    def get_user_input(self, name):
+        print(f'Player {name} turn')
         while True:
             user_input = input(f'Give choice {", ".join(self._choices)} or type r to get rules: ')
             if user_input == 'r' or user_input == 'R':
@@ -37,3 +38,12 @@ class UI:
                     print('Check your choice')
                 else:
                     return user_input
+
+    def get_player_name(self, player_number):
+        player = ''
+        while not player:
+            player = input(f'Give player {player_number + 1} name or give c if player is computer: ').strip()
+
+            if player == 'c' or player == 'C':
+                player = 'computer'
+        return player
