@@ -1,6 +1,7 @@
 from player import Player
-from user_interface import UI, choices
-from random import randint
+from user_interface import UI
+from random import choice
+from game_library import get_winner_index,choices
 
 
 def game_loop():
@@ -15,9 +16,14 @@ def game_loop():
             if player.get_name() != 'computer':
                 player_choices[i] = ui.get_user_input(player.get_name())
             else:
-                player_choices[i] = randint(0, len(choices))
+                player_choices[i] = choice(choices)
 
-        print(player_choices)
+        winner_idx = get_winner_index(player_choices)
+        ui.show_winner(winner_idx, player_choices)
+
+        "TODO: update results"
+        "TODO: Ask next round"
+        "TODO: show statistics before quiting"
 
 
 if __name__ == '__main__':

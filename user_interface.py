@@ -1,23 +1,13 @@
-choices = ['rock', 'paper', 'scissors', 'lizard', 'Spock']
+from game_library import choices, rules
 
 
 class UI:
     def __init__(self):
         self._start_text = 'Welcome to to Rock Paper Scissors Lizard Spock'
-        self._rules = '''
-        The rules of the game are:
-        Scissors cuts paper
-        Paper covers rock 
-        Rock crushes lizard 
-        Lizard poisons Spock 
-        Spock smashes scissors
-        Scissors decapitates lizard 
-        Lizard eats paper
-        Paper disproves Spock 
-        Spock vaporizes rock, 
-        and as it always has, rock crushes scissors.
-        '''
+        self._rules = rules
         self._choices = [f'{c}[{n}]' for n, c in enumerate(choices)]
+        self._player_0_name = ''
+        self._player_1_name = ''
 
     def display_start(self):
         print(self._start_text)
@@ -37,7 +27,7 @@ class UI:
                 except ValueError:
                     print('Check your choice')
                 else:
-                    return user_input
+                    return choices[user_input]
 
     def get_player_name(self, player_number):
         player = ''
@@ -46,4 +36,20 @@ class UI:
 
             if player == 'c' or player == 'C':
                 player = 'computer'
+
+        if player_number == 0:
+            self._player_0_name = player
+        else:
+            self._player_1_name = player
         return player
+
+    def show_winner(self, winner, player_choices):
+        print(f'Player {self._player_0_name} has {player_choices[0]}')
+        print(f'Player {self._player_1_name} has {player_choices[1]}')
+        if winner == -1:
+            print('It is tie')
+        elif winner == 0:
+            print(f'Winner is {self._player_0_name}')
+        else:
+            print(f'Winner is {self._player_1_name}')
+
