@@ -14,6 +14,3 @@ class Player:
         self._wins += wins
         self._loses += loses
 
-    def reset_score(self):
-        self._wins = 0
-        self._loses = 0

@@ -24,7 +24,6 @@ rules = '''
 
 
 def get_winner_index(users_choices):
-    print(users_choices)
     if users_choices[0] == users_choices[1]:
         return -1
     if users_choices[1] in winning_choices[users_choices[0]]:
